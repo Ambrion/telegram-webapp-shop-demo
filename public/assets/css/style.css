@@ -1,0 +1,42 @@
+label.required:after {
+    content: " *"; /* Adds an asterisk after the label */
+    color: red; /* Optional: styles the asterisk in red */
+}
+/* Fix for bootstrap-select when not 100% width */
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 100%;
+}
+
+.toast:not(.show) {
+    display: block;
+}
+
+.toast-container {
+    z-index: 99999;
+}
+
+.toast:not(.show) {
+    display: block;
+}
+
+.sortable-images .existing-image-item {
+    transition: transform 0.2s ease;
+}
+
+.sortable-images .existing-image-item.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+.sortable-images .existing-image-item.drag-over {
+    border: 2px dashed #007bff;
+}
+
+.image-handle {
+    user-select: none;
+}
+
+#languageDropdown {
+    color: #FFFFFF;
+    border: none;
+}

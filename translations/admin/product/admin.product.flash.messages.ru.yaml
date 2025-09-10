@@ -1,0 +1,8 @@
+product:
+    created.successfully: 'Товар "<a href="%url%">%title%</a>" успешно создан! ID товара: %id%.'
+    created.demo.successfully: 'Демонстрационный товар "%title%" успешно создан!'
+    creation.error: 'Ошибка при создании товара: товар с таким названием существует!'
+    updated.successfully: 'Товар "<a href="%url%">%title%</a>" успешно обновлен! ID товара: %id%.'
+    id.error: 'Указан неверный идентификатор товара.'
+    image:
+        upload.successfully: 'Количество загруженных изображений: %count%.'

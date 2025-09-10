@@ -1,0 +1,337 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}{{ 'Редактировать товар'|trans({}, 'admin.product.edit') }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <h1>{{ 'Редактировать товар'|trans({}, 'admin.product.edit') }}</h1>
+
+        <div class="alert alert-primary" role="alert">
+            {{ 'Поля отмеченные звёздочкой * обязательны к заполнению'|trans({}, 'admin.shared') }}
+        </div>
+        <div class="card">
+            <div class="card-body">
+                {{ include('admin/product/_form.html.twig') }}
+
+                {% if images is iterable and images is not empty %}
+                    <div id="image-gallery">
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3>{{ 'Текущие изображения'|trans({}, 'admin.product.edit') }}</h3>
+                            <button type="button" id="saveImageOrder" class="btn btn-success" style="display: none;">
+                                <i class="bi bi-save"></i> {{ 'Сохранить порядок'|trans({}, 'admin.product.edit') }}
+                            </button>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <div class="row sortable-images" id="sortableImages">
+                                    {% for id, image_path in images %}
+                                        {% if image_path is not null and image_path != '' %}
+                                            <div class="col-md-3 mb-3 existing-image-item" data-image-id="{{ id }}" data-image-index="{{ loop.index0 }}">
+                                                <div class="card">
+                                                    <div class="image-handle" style="cursor: move; background: #f8f9fa; padding: 5px; text-align: center; border-bottom: 1px solid #dee2e6;">
+                                                        <i class="bi bi-arrows-move"></i> {{ 'Перетащите для сортировки'|trans({}, 'admin.product.edit') }}
+                                                    </div>
+                                                    <img src="{{ asset(image_path, 'storage') }}"
+                                                         class="card-img-top"
+                                                         alt="Product image"
+                                                         style="height: 350px; object-fit: cover;"
+                                                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNjY2MiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iMTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuMzVlbSIgZmlsbD0iIzk5OSI+Tm8gSW1hZ2U8L3RleHQ+PC9zdmc+';">
+                                                    <div class="card-body text-center">
+                                                        <button type="button"
+                                                                class="btn btn-danger btn-sm delete-image-btn">
+                                                            <i class="bi bi-trash"></i> {{ 'Удалить'|trans({}, 'admin.shared') }}
+                                                        </button>
+                                                        <button type="button"
+                                                                class="btn btn-secondary btn-sm undelete-image-btn"
+                                                                style="display: none;">
+                                                            <i class="bi bi-x-circle"></i> {{ 'Отменить'|trans({}, 'admin.shared') }}
+                                                        </button>
+                                                        <input type="hidden"
+                                                               name="delete_images[]"
+                                                               value="{{ id }}"
+                                                               class="delete-image-input"
+                                                               disabled
+                                                               style="display: none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="mt-3">
+                                    <button type="button" id="deleteSelectedImages" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> {{ 'Удалить выбранные изображения'|trans({}, 'admin.product.edit') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/bootstrap-select.min.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/assets/js/bootstrap-select.min.js"></script>
+    {% if app.request.locale == 'ru' %}
+        <script src="/assets/js/i18n/defaults-ru_RU.js"></script>
+    {% endif %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedValues = JSON.parse('{{ categories|e('js') }}');
+            $('.selectpicker').selectpicker('val', selectedValues);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image sorting functionality
+            const sortableContainer = document.getElementById('sortableImages');
+            const saveOrderButton = document.getElementById('saveImageOrder');
+            let draggedItem = null;
+            let originalOrder = null;
+
+            if (sortableContainer) {
+                // Initialize sorting
+                const items = sortableContainer.querySelectorAll('.existing-image-item');
+                originalOrder = Array.from(items).map(item => item.dataset.imageId);
+
+                // Add drag and drop events to each item
+                items.forEach(item => {
+                    const handle = item.querySelector('.image-handle');
+
+                    // Mouse events
+                    handle.addEventListener('mousedown', function(e) {
+                        e.preventDefault();
+                        startDrag(item);
+                    });
+
+                    // Touch events for mobile
+                    handle.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        startDrag(item);
+                    }, { passive: false });
+                });
+
+                function startDrag(item) {
+                    // Store the original order when starting to drag
+                    if (!originalOrder) {
+                        originalOrder = Array.from(items).map(i => i.dataset.imageId);
+                    }
+                    draggedItem = item;
+                    setTimeout(() => {
+                        item.classList.add('dragging');
+                    }, 0);
+                }
+
+                // Handle mouse move for dragging
+                document.addEventListener('mousemove', function(e) {
+                    if (!draggedItem) return;
+
+                    e.preventDefault();
+
+                    const target = document.elementFromPoint(e.clientX, e.clientY);
+                    const targetItem = target.closest && target.closest('.existing-image-item');
+
+                    if (targetItem && targetItem !== draggedItem && sortableContainer.contains(targetItem)) {
+                        const rect = targetItem.getBoundingClientRect();
+                        const midpoint = (rect.left + rect.right) / 2;
+
+                        if (e.clientX < midpoint) {
+                            sortableContainer.insertBefore(draggedItem, targetItem);
+                        } else {
+                            sortableContainer.insertBefore(draggedItem, targetItem.nextSibling);
+                        }
+
+                        showSaveButton();
+                    }
+                });
+
+                // Handle touch move for dragging on mobile
+                document.addEventListener('touchmove', function(e) {
+                    if (!draggedItem) return;
+
+                    e.preventDefault();
+
+                    const touch = e.touches[0];
+                    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+                    const targetItem = target.closest && target.closest('.existing-image-item');
+
+                    if (targetItem && targetItem !== draggedItem && sortableContainer.contains(targetItem)) {
+                        const rect = targetItem.getBoundingClientRect();
+                        const midpoint = (rect.left + rect.right) / 2;
+
+                        if (touch.clientX < midpoint) {
+                            sortableContainer.insertBefore(draggedItem, targetItem);
+                        } else {
+                            sortableContainer.insertBefore(draggedItem, targetItem.nextSibling);
+                        }
+
+                        showSaveButton();
+                    }
+                }, { passive: false });
+
+                // End drag on mouse up or touch end
+                ['mouseup', 'touchend'].forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (draggedItem) {
+                            draggedItem.classList.remove('dragging');
+                            draggedItem = null;
+
+                            // Check if order has changed
+                            const currentItems = sortableContainer.querySelectorAll('.existing-image-item');
+                            const currentOrder = Array.from(currentItems).map(item => item.dataset.imageId);
+
+                            if (JSON.stringify(originalOrder) !== JSON.stringify(currentOrder)) {
+                                showSaveButton();
+                            }
+                        }
+                    });
+                });
+
+                // Save order button functionality
+                if (saveOrderButton) {
+                    saveOrderButton.addEventListener('click', function() {
+                        const currentItems = sortableContainer.querySelectorAll('.existing-image-item');
+                        const newSortOrder = Array.from(currentItems).map(item => item.dataset.imageId);
+
+                        fetch('{{ path('app_admin_product_image_reorder', {'productId': productId}) }}', {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify({
+                                sortOrder: newSortOrder,
+                                productId: {{ productId }}
+                            })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.result === true) {
+                                    originalOrder = newSortOrder;
+                                    hideSaveButton();
+                                    toast.success("{{ 'Порядок изображений успешно сохранён'|trans({}, 'admin.product.edit') }}");
+                                } else {
+                                    throw new Error(data.message || 'Failed to save order');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                toast.error("{{ 'Ошибка при сохранении порядка изображений'|trans({}, 'admin.product.edit') }}");
+                            });
+                    });
+                }
+
+                function showSaveButton() {
+                    if (saveOrderButton) {
+                        saveOrderButton.style.display = 'inline-block';
+                    }
+                }
+
+                function hideSaveButton() {
+                    if (saveOrderButton) {
+                        saveOrderButton.style.display = 'none';
+                    }
+                }
+            }
+
+            // Existing delete functionality
+            const deleteSelectedImagesBtn = document.getElementById('deleteSelectedImages');
+            if (deleteSelectedImagesBtn) {
+                deleteSelectedImagesBtn.addEventListener('click', function() {
+                    const markedImages = document.querySelectorAll('.delete-image-input:not([disabled])');
+
+                    if (markedImages.length === 0) {
+                        toast.error("{{ 'Пожалуйста, выберите изображения для удаления'|trans({}, 'admin.product.edit') }}");
+                        return;
+                    }
+
+                    const ids = Array.from(markedImages).map(input => input.value);
+
+                    fetch('{{ url('app_admin_product_image_delete', {'productId': productId}) }}', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify({ ids: ids })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.result === true) {
+                                document.querySelectorAll('.delete-image-input:not([disabled])').forEach(input => {
+                                    input.closest('.existing-image-item').remove();
+                                });
+
+                                const remainingImages = document.querySelectorAll('.existing-image-item');
+                                if (remainingImages.length === 0) {
+                                    const imageGallery = document.getElementById('image-gallery');
+                                    if (imageGallery) {
+                                        imageGallery.remove();
+                                    }
+                                }
+
+                                toast.success("{{ 'Изображения успешно удалены'|trans({}, 'admin.product.edit') }}");
+
+                                // Hide save button if no images left
+                                if (remainingImages.length === 0 && saveOrderButton) {
+                                    hideSaveButton();
+                                }
+                            } else {
+                                throw new Error('Failed to delete images');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            toast.error("{{ 'Ошибка при удалении изображений'|trans({}, 'admin.product.edit') }}");
+                        });
+                });
+            }
+
+            document.querySelectorAll('.delete-image-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const imageItem = this.closest('.existing-image-item');
+
+                    const hiddenInput = imageItem.querySelector('.delete-image-input');
+                    hiddenInput.disabled = false;
+
+                    imageItem.style.opacity = '0.5';
+                    this.disabled = true;
+                    this.innerHTML = '<i class="bi bi-trash"></i> {{ 'Помечено для удаления'|trans({}, 'admin.shared') }}';
+
+                    const undeleteButton = imageItem.querySelector('.undelete-image-btn');
+                    this.style.display = 'none';
+                    undeleteButton.style.display = 'inline-block';
+                });
+            });
+
+            document.querySelectorAll('.undelete-image-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const imageItem = this.closest('.existing-image-item');
+
+                    const hiddenInput = imageItem.querySelector('.delete-image-input');
+                    hiddenInput.disabled = true;
+
+                    imageItem.style.opacity = '1';
+
+                    const deleteButton = imageItem.querySelector('.delete-image-btn');
+                    deleteButton.style.display = 'inline-block';
+                    deleteButton.disabled = false;
+                    deleteButton.innerHTML = '<i class="bi bi-trash"></i> {{ 'Удалить'|trans({}, 'admin.shared') }}';
+                    this.style.display = 'none';
+                });
+            });
+        });
+    </script>
+{% endblock %}

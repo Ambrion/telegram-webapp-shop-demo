@@ -1,0 +1,82 @@
+{% extends 'shop/layout.html.twig' %}
+
+{% block title %}Telegram WebApp Shop{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        {% if categories %}
+            <div class="offcanvas offcanvas-top h-auto" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasTopLabel">Корзина</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div id="cart-form"></div>
+                    <button id="clear-cart-btn" class="btn btn-warning mt-3" style="display: none;">
+                        Очистить корзину
+                    </button>
+                </div>
+            </div>
+
+            <h1>Товары дня</h1>
+
+            <div class="row" id="products">
+                {% for categoryTitle, products in categories.categories %}
+                    <h2>{{ categoryTitle }}</h2>
+                    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+                        {% for product in products %}
+                            <div class="col">
+                                <div class="card h-100">
+                                    {% if product.images|length > 0 %}
+                                        <div id="productCarousel{{ product.id }}" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                {% for image in product.images %}
+                                                    {% if image is not null and image != '' %}
+                                                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                                            <img src="{{ asset(image, 'storage') }}" class="card-img-top" alt="{{ product.title }}">
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                            {% if product.images|length > 1 %}
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel{{ product.id }}" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Предыдущий</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel{{ product.id }}" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Следующий</span>
+                                                </button>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ product.title }}</h5>
+                                        <p class="card-text">{{ product.description }}</p>
+                                        <h5>Цена: {{ product.price }} RUB</h5>
+                                    </div>
+                                    <div class="card-footer d-flex flex-column gap-2">
+                                        <button class="btn btn-primary add-btn"
+                                                onclick="addToCart({{ {id: product.id, title: product.title, price: product.price}|json_encode|e('html_attr') }})">
+                                            Добавить в корзину
+                                        </button>
+
+                                        <button class="btn btn-danger remove-btn"
+                                                style="display: none;"
+                                                onclick="removeOneFromCart({{ {id: product.id, title: product.title, price: product.price}|json_encode|e('html_attr') }})">
+                                                Удалить из корзины
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h5>Идёт наполнение товарами. Зайдите, пожалуйста, позже.</h5>
+        {% endif %}
+    </div>
+    <script src="app.js?v1.6"></script>
+{% endblock %}

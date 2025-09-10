@@ -1,0 +1,6 @@
+category:
+    created.successfully: 'Категория "<a href="%url%">%title%</a>" успешно создана! ID категории: %id%.'
+    creation.error: 'Ошибка при создании категории: категория с таким названием существует!'
+    updated.successfully: 'Категория "<a href="%url%">%title%</a>" успешно обновлена! ID категории: %id%.'
+    id.error: 'Указан неверный идентификатор категории.'
+    created.demo.successfully: 'Демонстрационная категория "%title%" успешно создана!'

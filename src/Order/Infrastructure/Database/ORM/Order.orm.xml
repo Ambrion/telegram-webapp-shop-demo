@@ -1,0 +1,41 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Order\Domain\Entity\Order" table="order_order">
+        <id name="id" type="bigint">
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="userUlid" column="user_ulid" type="string" length="26" index="true" />
+        <field name="invoice" type="string" length="256" index="true" />
+        <field name="currencyCode" column="currency_code" type="string" length="3" />
+
+        <field name="totalAmount" column="total_amount" type="integer">
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+        </field>
+
+        <field name="paymentMethod" column="payment_method" type="string" length="255" />
+
+        <field name="orderStatusId" column="order_status_id" type="smallint">
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+        </field>
+
+        <field name="providerPaymentChargeId" type="string" column="provider_payment_charge_id" length="128" nullable="true" index="true" />
+
+        <field name="createdAt" column="created_at" type="datetime">
+            <options>
+                <option name="default">CURRENT_TIMESTAMP</option>
+            </options>
+        </field>
+
+        <field name="updatedAt" column="updated_at" type="datetime" nullable="true"/>
+    </entity>
+</doctrine-mapping>

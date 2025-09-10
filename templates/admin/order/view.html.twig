@@ -1,0 +1,77 @@
+{% extends 'admin/layout.html.twig' %}
+
+
+{% block title %}{% if order is not empty %}{{ 'Просмотр заказа'|trans({}, 'admin.order.view') }} # {{ order.invoice }}{% endif %}{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if order is not empty %}
+            <h1>{{ 'Просмотр заказа'|trans({}, 'admin.order.view') }} # {{ order.invoice }}</h1>
+            {% if user is not empty %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Покупатель'|trans({}, 'admin.shared') }}</h5>
+                        <ul>
+                            {% if user.telegramUserName %}
+                                <li>
+                                    <strong>{{ 'Имя пользователя в телеграме'|trans({}, 'admin.shared') }}:</strong>
+                                    <a href="https://t.me/{{ user.telegramUserName }}" target="_blank">{{ user.telegramUserName }}</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    {{ 'Нет имени пользователя телеграма. Связь через бота.'|trans({}, 'admin.shared') }}
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ 'Заказанные товары'|trans({}, 'admin.order.view') }}</h5>
+                    <table class="table table-striped">
+                        <caption>{{ 'Всего товаров'|trans({}, 'admin.order.view') }} {{ order.products|length }}</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">{{ 'Изображение'|trans({}, 'admin.shared') }}</th>
+                                <th scope="col">{{ 'Название'|trans({}, 'admin.shared') }}</th>
+                                <th scope="col">{{ 'Количество'|trans({}, 'admin.shared') }}</th>
+                                <th scope="col">{{ 'Цена'|trans({}, 'admin.shared') }}, {{ order.currencyCode }}</th>
+                                <th scope="col">{{ 'Итого'|trans({}, 'admin.shared') }}, {{ order.currencyCode }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% set orderTotal = 0 %}
+                        {% for product in order.products %}
+                            <tr>
+                                <th scope="row">{{ product.productId }}</th>
+                                <td>
+                                    {% if product.filePath is not null and product.filePath != '' %}
+                                        <img src="{{ asset(product.filePath, 'storage') }}"
+                                             class="card-img-top"
+                                             alt="Product image"
+                                             style="width: 50px; object-fit: cover;">
+                                    {% endif %}
+                                </td>
+                                <td>{{ product.title }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>{{ product.price }}</td>
+                                <td>{{ product.totalPrice }}</td>
+                            </tr>
+                            {% set orderTotal = orderTotal + product.totalPrice %}
+                        {% endfor %}
+                        <tr>
+                            <td colspan="5"></td>
+                            <td><strong>{{ 'Всего к оплате'|trans({}, 'admin.shared') }}: {{ orderTotal }} {{ order.currencyCode }}</strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <h1>{{ 'Ошибка: заказ не найден'|trans({}, 'admin.order.view') }}</h1>
+        {% endif %}
+    </div>
+{% endblock %}

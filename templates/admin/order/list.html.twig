@@ -1,0 +1,55 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}{{ 'Список заказов'|trans({}, 'admin.order.list') }}{% endblock %}
+
+{% block content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message|raw }}
+        </div>
+    {% endfor %}
+
+    <h1>{{ 'Список заказов'|trans({}, 'admin.order.list') }}</h1>
+    {{ form_start(searchForm) }}
+    {{ form_widget(searchForm) }}
+    <button class="btn btn-success">{{ button_label|default('Найти'|trans({}, 'admin.shared')) }}</button>
+    {{ form_end(searchForm) }}
+    <hr>
+    <table class="table">
+        <caption>{{ 'Всего'|trans({}, 'admin.shared') }} {{ totalItems }}</caption>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>{{ 'Инвойс'|trans({}, 'admin.shared') }}</th>
+            <th>{{ 'Итого'|trans({}, 'admin.shared') }}, RUB</th>
+            <th>{{ 'Дата создания'|trans({}, 'admin.shared') }}</th>
+            <th>{{ 'Статус'|trans({}, 'admin.shared') }}</th>
+            <th>{{ 'Действие'|trans({}, 'admin.shared') }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.invoice }}</td>
+                <td>{{ item.totalAmount }}</td>
+                <td>{{ item.createdAt|date('H:i d.m.Y') }}</td>
+                <td>
+                    {{ item.orderStatus }}
+                </td>
+                <td>
+                    <a href="{{ url('app_admin_order_view', {'orderId': item.id}) }}">{{ 'Просмотреть'|trans({}, 'admin.shared') }}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">{{ 'записей не найдено'|trans({}, 'admin.shared') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if totalPages > 1 %}
+        {% include 'admin/partials/pagination.html.twig' with {'path_item': 'app_admin_order_list'} %}
+    {% endif %}
+{% endblock %}

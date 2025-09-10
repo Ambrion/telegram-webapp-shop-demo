@@ -1,0 +1,54 @@
+parameters:
+  paths:
+    - ./src
+  exclude_files:
+    - '#.*\/src\/.*\/Infrastructure\/Adapter\/.*#'
+    - '#.*\/src\/.*\/Infrastructure\/Api\/.*#'
+  layers:
+    - name: Admin
+      collectors:
+        - type: directory
+          regex: /src/Admin/.*
+    - name: Category
+      collectors:
+          - type: directory
+            regex: /src/Category/.*
+    - name: Front
+      collectors:
+          - type: directory
+            regex: /src/Front/.*
+    - name: Order
+      collectors:
+          - type: directory
+            regex: /src/Order/.*
+    - name: Product
+      collectors:
+          - type: directory
+            regex: /src/Product/.*
+    - name: Shared
+      collectors:
+          - type: directory
+            regex: /src/Shared/.*
+    - name: Telegram
+      collectors:
+          - type: directory
+            regex: /src/Telegram/.*
+    - name: Users
+      collectors:
+        - type: directory
+          regex: /src/Users/.*
+  ruleset:
+    Admin:
+      - Shared
+    Category:
+      - Shared
+    Front:
+      - Shared
+    Order:
+      - Shared
+    Product:
+      - Shared
+    Telegram:
+      - Shared
+    Users:
+      - Shared

@@ -1,0 +1,8 @@
+product:
+    created.successfully: 'Product "<a href="%url%">%title%</a>" successfully created! Product ID: %id%.'
+    created.demo.successfully: 'Demo product "%title%" successfully created!'
+    creation.error: 'Error creating product: a product with this name already exists!'
+    updated.successfully: 'Product "<a href="%url%">%title%</a>" successfully updated! Product ID: %id%.'
+    id.error: 'Invalid product ID provided.'
+    image:
+        upload.successfully: 'Number of uploaded images: %count%.'

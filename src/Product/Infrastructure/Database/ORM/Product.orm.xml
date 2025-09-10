@@ -1,0 +1,14 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Product\Domain\Entity\Product" table="product_product">
+        <embedded name="id" class="App\Product\Domain\ValueObject\IdValue" use-column-prefix="false"/>
+        <embedded name="title" class="App\Product\Domain\ValueObject\TitleValue" use-column-prefix="false"/>
+        <embedded name="description" class="App\Product\Domain\ValueObject\DescriptionValue" use-column-prefix="false"/>
+        <embedded name="slug" class="App\Product\Domain\ValueObject\SlugValue" use-column-prefix="false"/>
+        <embedded name="price" class="App\Product\Domain\ValueObject\PriceValue" use-column-prefix="false"/>
+        <embedded name="isActive" class="App\Product\Domain\ValueObject\ActiveValue" use-column-prefix="false"/>
+    </entity>
+</doctrine-mapping>

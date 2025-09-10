@@ -1,0 +1,19 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Сводная пользователя{% endblock %}
+
+{% block content %}
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="#">{{ 'Жизнь'|trans({}, 'admin.shared') }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ 'Сегодня прекрасный день для замечательных дел'|trans({}, 'admin.shared') }}!</h5>
+            <p class="card-text">{{ 'Успеха сегодня'|trans({}, 'admin.shared') }}!</p>
+        </div>
+    </div>
+{% endblock %}

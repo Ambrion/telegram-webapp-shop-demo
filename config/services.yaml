@@ -1,0 +1,48 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    telegram_bot_token: '%env(TELEGRAM_BOT_TOKEN)%'
+    telegram_bot_api_url: '%env(TELEGRAM_BOT_API_URL)%'
+    telegram_bot_youkassa_token_provider: '%env(TELEGRAM_BOT_YOOKASSA_TOKEN_PROVIDER)%'
+    telegram_bot_manager_notification_telegram_chat_id: '%env(TELEGRAM_BOT_MANAGER_NOTIFICATION_TELEGRAM_CHAT_ID)%'
+    telegram_bot_order_manager: '%env(TELEGRAM_BOT_ORDER_MANAGER)%'
+    telegram_public_key_test: '%env(TELEGRAM_PUBLIC_KEY_TEST)%'
+    telegram_public_key_prod: '%env(TELEGRAM_PUBLIC_KEY_PROD)%'
+    item_per_page: '%env(int:ITEM_PER_PAGE)%'
+    max_visible_pages: '%env(int:MAX_VISIBLE_PAGES)%'
+    storage_path: '%kernel.project_dir%%env(STORAGE_BASE_URL)%'
+    invoice_prefix: '%env(INVOICE_PREFIX)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    _instanceof:
+        App\Shared\Application\Command\CommandHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+
+        App\Shared\Application\Query\QueryHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
+
+    App\Product\Infrastructure\Service\FileUploader:
+        arguments:
+            $privateStorageDirectory: '%kernel.project_dir%%env(STORAGE_BASE_URL)%'
+
+    App\Shared\Presentation\Controller\StorageController:
+        arguments:
+            $storagePath: '%kernel.project_dir%%env(STORAGE_BASE_URL)%'

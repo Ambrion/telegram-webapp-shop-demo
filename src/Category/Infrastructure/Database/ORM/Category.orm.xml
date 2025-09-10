@@ -1,0 +1,14 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Category\Domain\Entity\Category" table="category_category">
+        <embedded name="id" class="App\Category\Domain\ValueObject\IdValue" use-column-prefix="false"/>
+        <embedded name="title" class="App\Category\Domain\ValueObject\TitleValue" use-column-prefix="false"/>
+        <embedded name="slug" class="App\Category\Domain\ValueObject\SlugValue" use-column-prefix="false"/>
+        <embedded name="parentId" class="App\Category\Domain\ValueObject\ParentIdValue" use-column-prefix="false"/>
+        <embedded name="isActive" class="App\Category\Domain\ValueObject\ActiveValue" use-column-prefix="false"/>
+        <embedded name="sortOrder" class="App\Category\Domain\ValueObject\SortOrderValue" use-column-prefix="false"/>
+    </entity>
+</doctrine-mapping>

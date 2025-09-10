@@ -1,0 +1,61 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}{{ 'Список категорий'|trans({}, 'admin.category.list') }}{% endblock %}
+
+{% block second_navigation %}
+    <a href="{{ path('app_admin_category_new') }}" class="btn btn-success" aria-current="page">{{ 'Создать категорию'|trans({}, 'admin.category.list')}}</a>
+{% endblock %}
+
+{% block content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message|raw }}
+        </div>
+    {% endfor %}
+
+    <h1>{{ 'Список категорий'|trans({}, 'admin.category.list') }}</h1>
+    {{ form_start(searchForm) }}
+    {{ form_widget(searchForm) }}
+    <button class="btn btn-success">{{ button_label|default('Найти'|trans({}, 'admin.shared')) }}</button>
+    {{ form_end(searchForm) }}
+    <hr>
+    <table class="table">
+        <caption>{{ 'Всего'|trans({}, 'admin.shared') }} {{ totalItems }}</caption>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">{{ 'Название'|trans({}, 'admin.shared') }}</th>
+            <th scope="col">{{ 'ЧПУ'|trans({}, 'admin.shared') }}</th>
+            <th scope="col">{{ 'Родитель'|trans({}, 'admin.shared') }}</th>
+            <th scope="col" class="text-center">{{ 'Порядок отображения'|trans({}, 'admin.shared') }}</th>
+            <th scope="col">{{ 'Статус'|trans({}, 'admin.shared') }}</th>
+            <th scope="col">{{ 'Действие'|trans({}, 'admin.shared') }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.slug }}</td>
+                <td>{{ item.parentTitle }}</td>
+                <td class="text-center">{{ item.sortOrder }}</td>
+                <td>
+                    <span class="{% if item.isActive %}text-success{% else %}text-danger{% endif %}">{{ item.categoryStatus }}</span>
+                </td>
+                <td>
+                    <a href="{{ url('app_admin_category_edit', {'categoryId': item.id}) }}">{{ 'Редактировать'|trans({}, 'admin.shared') }}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">{{ 'Записей не найдено'|trans({}, 'admin.shared') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if totalPages > 1 %}
+        {% include 'admin/partials/pagination.html.twig' with {'path_item': 'app_admin_category_list'} %}
+    {% endif %}
+{% endblock %}

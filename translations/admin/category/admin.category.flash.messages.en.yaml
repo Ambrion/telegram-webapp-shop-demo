@@ -1,0 +1,6 @@
+category:
+    created.successfully: 'Category "<a href="%url%">%title%</a>" successfully created! Category ID: %id%.'
+    creation.error: 'Error creating category: a category with this name already exists!'
+    updated.successfully: 'The "<a href="%url%">%title%</a>" category has been successfully updated! Category ID: %id%.'
+    id.error: 'Invalid category ID provided.'
+    created.demo.successfully: 'Demo category "%title%" successfully created!'

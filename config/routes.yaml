@@ -1,0 +1,37 @@
+shared_controllers:
+    resource:
+        path: ../src/Shared/Presentation/Controller/
+        namespace: App\Shared\Presentation\Controller
+    type: attribute
+    trailing_slash_on_root: false
+
+admin_controllers:
+    prefix:
+        ru: /
+        en: /en
+    resource:
+        path: ../src/Admin/Presentation/Controller/
+        namespace: App\Admin\Presentation\Controller
+    type: attribute
+    trailing_slash_on_root: false
+
+front_controllers:
+    prefix:
+        ru: /
+        en: /en
+    resource:
+        path: ../src/Front/Presentation/Controller/
+        namespace: App\Front\Presentation\Controller
+    type: attribute
+    trailing_slash_on_root: false
+
+user_controllers:
+    prefix:
+        ru: /
+        en: /en
+    resource:
+        path: ../src/Users/Presentation/Controller/
+        namespace: App\Users\Presentation\Controller
+    type: attribute
+    trailing_slash_on_root: false
+

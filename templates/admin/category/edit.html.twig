@@ -1,0 +1,44 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}{{ 'Редактировать категорию'|trans({}, 'admin.category.edit') }}{% endblock %}
+
+{% block content %}
+
+
+{#    {{ include('admin/category/_delete_form.html.twig') }}#}
+
+    <div class="container">
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <h1>{{ 'Редактировать категорию'|trans({}, 'admin.category.edit') }}</h1>
+
+        <div class="alert alert-primary" role="alert">
+            {{ 'Поля отмеченные звёздочкой * обязательны к заполнению'|trans({}, 'admin.shared') }}
+        </div>
+        <div class="card">
+            <div class="card-body">
+                {{ include('admin/category/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/bootstrap-select.min.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/assets/js/bootstrap-select.min.js"></script>
+    {% if app.request.locale == 'ru' %}
+        <script src="/assets/js/i18n/defaults-ru_RU.js"></script>
+    {% endif %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('.selectpicker').selectpicker('val', '{{ parentId }}');
+        });
+    </script>
+{% endblock %}

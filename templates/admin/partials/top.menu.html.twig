@@ -1,0 +1,22 @@
+<ul class="navbar-nav me-auto mb-2 mb-md-0">
+    <li class="nav-item">
+        <a class="nav-link{{ (app.request.attributes.get('_route') == 'app_admin_dashboard') ? ' active' }}" aria-current="page" href="{{ url('app_admin_dashboard') }}">
+            {{ 'Главная'|trans({}, 'admin.top.menu') }}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link{{ (app.request.attributes.get('_route') in ['app_admin_order_list','app_admin_order_view']) ? ' active' }}" aria-current="page" href="{{ url('app_admin_order_list') }}">
+            {{ 'Заказы'|trans({}, 'admin.top.menu') }}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link{{ (app.request.attributes.get('_route') in ['app_admin_category_list','app_admin_category_new','app_admin_category_edit']) ? ' active' }}" aria-current="page" href="{{ url('app_admin_category_list') }}">
+            {{ 'Категории'|trans({}, 'admin.top.menu') }}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link{{ (app.request.attributes.get('_route') in ['app_admin_product_list','app_admin_product_new','app_admin_product_edit']) ? ' active' }}" aria-current="page" href="{{ url('app_admin_product_list') }}">
+            {{ 'Товары'|trans({}, 'admin.top.menu') }}
+        </a>
+    </li>
+</ul>

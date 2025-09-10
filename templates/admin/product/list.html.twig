@@ -1,0 +1,71 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}{{ 'Список товаров'|trans({}, 'admin.product.list') }}{% endblock %}
+
+{% block second_navigation %}
+    <a href="{{ path('app_admin_product_new') }}" class="btn btn-success" aria-current="page">{{ 'Создать товар'|trans({}, 'admin.product.list')}}</a>
+{% endblock %}
+
+{% block content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message|raw }}
+        </div>
+    {% endfor %}
+
+    <h1>{{ 'Список товаров'|trans({}, 'admin.product.list') }}</h1>
+    {{ form_start(searchForm) }}
+    {{ form_widget(searchForm) }}
+    <button class="btn btn-success">{{ button_label|default('Найти'|trans({}, 'admin.shared')) }}</button>
+    {{ form_end(searchForm) }}
+    <hr>
+    <table class="table">
+        <caption>{{ 'Всего'|trans({}, 'admin.shared') }} {{ totalItems }}</caption>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">{{ 'Изображение'|trans({}, 'admin.shared') }}</th>
+            <th scope="col">{{ 'Название'|trans({}, 'admin.shared') }}</th>
+            <th scope="col">{{ 'Цена'|trans({}, 'admin.shared') }}</th>
+{#            <th scope="col">{{ 'Категории'|trans({}, 'admin.shared') }}</th>#}
+            <th scope="col">{{ 'Статус'|trans({}, 'admin.shared') }}</th>
+            <th scope="col">{{ 'Действие'|trans({}, 'admin.shared') }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>
+                    {% if item.filePath is not null and item.filePath != '' %}
+                        <img src="{{ asset(item.filePath, 'storage') }}"
+                             class="card-img-top"
+                             alt="Product image"
+                             style="width: 50px; object-fit: cover;">
+                    {% endif %}
+                </td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.price }}</td>
+{#                <td>#}
+{#                    сделать#}
+{#                   {{ item.categories }}#}
+{#                </td>#}
+                <td>
+                    <span class="{% if item.isActive %}text-success{% else %}text-danger{% endif %}">{{ item.productStatus }}</span>
+                </td>
+                <td>
+                    <a href="{{ url('app_admin_product_edit', {'productId': item.id}) }}">{{ 'Редактировать'|trans({}, 'admin.shared') }}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">{{ 'Записей не найдено'|trans({}, 'admin.shared') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if totalPages > 1 %}
+        {% include 'admin/partials/pagination.html.twig' with {'path_item': 'app_admin_product_list'} %}
+    {% endif %}
+{% endblock %}
