@@ -18,6 +18,8 @@ https://t.me/DemoShopWebApp_bot
 
 https://yookassa.ru/developers/payment-acceptance/testing-and-going-live/testing#test-bank-card-data
 
+Уведомления о заказах приходят в телеграм Менеджеру.
+
 
 #### Админку в демо-режиме можно посмотреть тут:
 
