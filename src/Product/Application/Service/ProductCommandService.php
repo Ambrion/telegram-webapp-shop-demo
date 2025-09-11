@@ -12,11 +12,11 @@ use App\Product\Application\UseCases\Command\ReorderProductImage\ReorderProductI
 use App\Product\Application\UseCases\Command\UpdateProduct\UpdateProductCommand;
 use App\Product\Domain\Service\ProductCommandServiceInterface;
 use App\Product\Domain\DTO\ProductDTO;
-use App\Shared\Infrastructure\Bus\CommandBus;
+use App\Shared\Application\Command\CommandBusInterface;
 
 readonly class ProductCommandService implements ProductCommandServiceInterface
 {
-    public function __construct(private CommandBus $commandBus)
+    public function __construct(private CommandBusInterface $commandBus)
     {
     }
 

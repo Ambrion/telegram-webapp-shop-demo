@@ -1,7 +1,7 @@
 <?php
 
-use App\Product\Application\Query\FindAllProductWithCategory\FindAllProductWithCategoryQuery;
-use App\Product\Application\Query\FindAllProductWithCategory\FindAllProductWithCategoryQueryHandler;
+use App\Product\Application\UseCases\Query\FindAllProductWithCategory\FindAllProductWithCategoryQuery;
+use App\Product\Application\UseCases\Query\FindAllProductWithCategory\FindAllProductWithCategoryQueryHandler;
 use App\Product\Domain\DTO\ProductCategoryDTO;
 use App\Product\Domain\DTO\ProductDTO;
 use App\Product\Domain\Entity\Product;

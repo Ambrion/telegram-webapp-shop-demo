@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Front\Application\Query\FindAllProductWithCategory;
 
-use App\Product\Application\Query\FindAllProductWithCategory\FindAllProductWithCategoryQuery;
-use App\Product\Application\Query\FindAllProductWithCategory\FindAllProductWithCategoryQueryHandler;
+use App\Product\Application\UseCases\Query\FindAllProductWithCategory\FindAllProductWithCategoryQuery;
+use App\Product\Application\UseCases\Query\FindAllProductWithCategory\FindAllProductWithCategoryQueryHandler;
 use App\Product\Domain\DTO\ProductCategoryDTO;
 use App\Product\Domain\Repository\ProductImageQueryRepositoryInterface;
 use App\Product\Domain\Repository\ProductQueryRepositoryInterface;
