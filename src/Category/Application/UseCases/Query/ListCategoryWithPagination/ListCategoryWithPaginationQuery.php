@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Query\ListCategoryWithPagination;
+namespace App\Category\Application\UseCases\Query\ListCategoryWithPagination;
 
 use App\Category\Domain\Filter\CategoryFilterInterface;
 use App\Shared\Application\Query\QueryInterface;

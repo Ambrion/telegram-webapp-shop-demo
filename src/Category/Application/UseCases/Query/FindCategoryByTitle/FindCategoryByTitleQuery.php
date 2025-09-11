@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Query\FindCategoryByTitle;
+namespace App\Category\Application\UseCases\Query\FindCategoryByTitle;
 
 use App\Shared\Application\Query\QueryInterface;
 

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Query\FindCategoryByTitle;
+namespace App\Category\Application\UseCases\Query\FindCategoryById;
 
-use App\Category\Application\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryDTO;
 use App\Category\Domain\Repository\CategoryQueryRepositoryInterface;
 use App\Shared\Application\Query\QueryHandlerInterface;
 
-readonly class FindCategoryByTitleQueryHandler implements QueryHandlerInterface
+readonly class FindCategoryByIdQueryHandler implements QueryHandlerInterface
 {
     public function __construct(private CategoryQueryRepositoryInterface $repository)
     {
     }
 
-    public function __invoke(FindCategoryByTitleQuery $query): ?CategoryDTO
+    public function __invoke(FindCategoryByIdQuery $query): ?CategoryDTO
     {
-        $result = $this->repository->findOneByTitle($query->title);
+        $result = $this->repository->findById($query->id);
 
         if (!$result) {
             return null;

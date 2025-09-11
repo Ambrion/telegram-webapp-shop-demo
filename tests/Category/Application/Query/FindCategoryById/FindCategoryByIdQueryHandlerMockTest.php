@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Category\Application\Query\FindCategoryById;
 
-use App\Category\Application\DTO\CategoryDTO;
-use App\Category\Application\Query\FindCategoryById\FindCategoryByIdQuery;
-use App\Category\Application\Query\FindCategoryById\FindCategoryByIdQueryHandler;
+use App\Category\Application\UseCases\Query\FindCategoryById\FindCategoryByIdQuery;
+use App\Category\Application\UseCases\Query\FindCategoryById\FindCategoryByIdQueryHandler;
+use App\Category\Domain\DTO\CategoryDTO;
 use App\Category\Domain\Repository\CategoryQueryRepositoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

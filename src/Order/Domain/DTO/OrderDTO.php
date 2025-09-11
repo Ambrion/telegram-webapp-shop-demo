@@ -5,51 +5,31 @@ declare(strict_types=1);
 namespace App\Order\Domain\DTO;
 
 use App\Shared\Domain\DTO\OrderProductDTO;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class OrderDTO
 {
     public function __construct(
-        #[Assert\NotBlank]
-        #[Assert\Type('int')]
         public int $id,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $invoice,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $paymentMethod,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $currencyCode,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('int')]
         public int $totalAmount,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $orderStatus,
 
-        #[Assert\Type('string')]
         public ?string $providerPaymentChargeId,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $createdAt,
 
         /**
          * @var array<OrderProductDTO>
          */
-        #[Assert\NotBlank]
-        #[Assert\Type('array')]
         public array $products,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $userUlid,
     ) {
         foreach ($this->products as $product) {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Query\FindAllByCriteria;
+namespace App\Category\Application\UseCases\Query\FindAllByCriteria;
 
 use App\Category\Domain\Filter\CategoryFilterInterface;
 use App\Shared\Application\Query\QueryInterface;

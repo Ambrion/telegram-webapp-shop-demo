@@ -1,8 +1,8 @@
 <?php
 
-use App\Category\Application\DTO\CategoryDTO;
-use App\Category\Application\Query\FindCategoryById\FindCategoryByIdQuery;
-use App\Category\Application\Query\FindCategoryById\FindCategoryByIdQueryHandler;
+use App\Category\Application\UseCases\Query\FindCategoryById\FindCategoryByIdQuery;
+use App\Category\Application\UseCases\Query\FindCategoryById\FindCategoryByIdQueryHandler;
+use App\Category\Domain\DTO\CategoryDTO;
 use App\Category\Domain\Entity\Category;
 use App\Category\Domain\Repository\CategoryQueryRepositoryInterface;
 use App\Tests\Resource\Fixture\Category\CategoryIsActiveFixture;

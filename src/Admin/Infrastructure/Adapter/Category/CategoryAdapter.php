@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Admin\Infrastructure\Adapter\Category;
 
-use App\Category\Application\DTO\CategoryDTO;
-use App\Category\Application\DTO\CategoryListDTO;
+use App\Category\Domain\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryListDTO;
 use App\Category\Domain\Filter\CategoryFilterInterface;
 use App\Category\Infrastructure\Api\Admin\CategoryApiInterface;
 

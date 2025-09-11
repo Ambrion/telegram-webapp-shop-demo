@@ -4,38 +4,23 @@ declare(strict_types=1);
 
 namespace App\Product\Domain\DTO;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
-class ProductListDTO
+readonly class ProductListDTO
 {
     public function __construct(
-        #[Assert\NotBlank]
-        #[Assert\Type('int')]
         public int $id,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $title,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $slug,
 
-        #[Assert\Type('string')]
         public ?string $description,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('int')]
         public int $price,
 
-        #[Assert\Type('bool')]
         public ?bool $isActive,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $productStatus,
 
-        #[Assert\Type('string')]
         public ?string $filePath,
     ) {
     }

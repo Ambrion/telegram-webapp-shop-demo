@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Admin\Infrastructure\Adapter\Product;
 
-use App\Category\Application\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryDTO;
 use App\Product\Domain\DTO\ProductDTO;
 use Symfony\Component\Form\FormInterface;
 

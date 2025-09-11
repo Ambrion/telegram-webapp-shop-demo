@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Query\FindAllByCriteria;
+namespace App\Category\Application\UseCases\Query\FindAllByCriteria;
 
-use App\Category\Application\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryDTO;
 use App\Category\Domain\Repository\CategoryQueryRepositoryInterface;
 use App\Shared\Application\Query\QueryHandlerInterface;
 use App\Shared\Domain\Validation\QueryValidationIdsInterface;

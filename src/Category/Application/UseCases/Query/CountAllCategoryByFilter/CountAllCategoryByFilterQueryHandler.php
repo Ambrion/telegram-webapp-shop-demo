@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Query\CountAllCategoryByFilter;
+namespace App\Category\Application\UseCases\Query\CountAllCategoryByFilter;
 
 use App\Category\Domain\Repository\CategoryQueryRepositoryInterface;
 use App\Shared\Application\Query\QueryHandlerInterface;

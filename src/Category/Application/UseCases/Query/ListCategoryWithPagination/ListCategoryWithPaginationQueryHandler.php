@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Query\ListCategoryWithPagination;
+namespace App\Category\Application\UseCases\Query\ListCategoryWithPagination;
 
-use App\Category\Application\DTO\CategoryListDTO;
+use App\Category\Domain\DTO\CategoryListDTO;
 use App\Category\Domain\Repository\CategoryQueryRepositoryInterface;
 use App\Category\Domain\Service\CategoryStatus;
 use App\Shared\Application\Query\QueryHandlerInterface;

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Infrastructure\Service;
+namespace App\Category\Application\Service;
 
-use App\Category\Application\DTO\CategoryDTO;
-use App\Category\Application\DTO\CategoryListDTO;
-use App\Category\Application\Query\CountAllCategoryByFilter\CountAllCategoryByFilterQuery;
-use App\Category\Application\Query\FindAllByCriteria\FindAllByCriteriaQuery;
-use App\Category\Application\Query\FindCategoryById\FindCategoryByIdQuery;
-use App\Category\Application\Query\FindCategoryByTitle\FindCategoryByTitleQuery;
-use App\Category\Application\Query\ListCategoryWithPagination\ListCategoryWithPaginationQuery;
-use App\Category\Application\Service\CategoryQueryServiceInterface;
+use App\Category\Application\UseCases\Query\CountAllCategoryByFilter\CountAllCategoryByFilterQuery;
+use App\Category\Application\UseCases\Query\FindAllByCriteria\FindAllByCriteriaQuery;
+use App\Category\Application\UseCases\Query\FindCategoryById\FindCategoryByIdQuery;
+use App\Category\Application\UseCases\Query\FindCategoryByTitle\FindCategoryByTitleQuery;
+use App\Category\Application\UseCases\Query\ListCategoryWithPagination\ListCategoryWithPaginationQuery;
+use App\Category\Domain\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryListDTO;
 use App\Category\Domain\Filter\CategoryFilterInterface;
+use App\Category\Domain\Service\CategoryQueryServiceInterface;
 use App\Shared\Application\Query\QueryBusInterface;
 
 readonly class CategoryQueryService implements CategoryQueryServiceInterface

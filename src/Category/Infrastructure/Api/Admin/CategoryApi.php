@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Category\Infrastructure\Api\Admin;
 
-use App\Category\Application\DTO\CategoryDTO;
-use App\Category\Application\DTO\CategoryListDTO;
-use App\Category\Application\Service\CategoryCommandServiceInterface;
-use App\Category\Application\Service\CategoryQueryServiceInterface;
+use App\Category\Domain\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryListDTO;
 use App\Category\Domain\Filter\CategoryFilterInterface;
+use App\Category\Domain\Service\CategoryCommandServiceInterface;
+use App\Category\Domain\Service\CategoryQueryServiceInterface;
 
 readonly class CategoryApi implements CategoryApiInterface
 {

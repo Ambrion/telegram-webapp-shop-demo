@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Service;
+namespace App\Category\Domain\Service;
 
-use App\Category\Application\DTO\CategoryDTO;
-use App\Category\Application\DTO\CategoryListDTO;
+use App\Category\Domain\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryListDTO;
 use App\Category\Domain\Filter\CategoryFilterInterface;
 
 interface CategoryQueryServiceInterface

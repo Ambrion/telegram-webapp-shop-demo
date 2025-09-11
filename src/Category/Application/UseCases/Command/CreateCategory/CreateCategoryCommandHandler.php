@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Command\CreateCategory;
+namespace App\Category\Application\UseCases\Command\CreateCategory;
 
 use App\Category\Domain\Factory\CategoryFactory;
 use App\Category\Domain\Repository\CategoryCommandRepositoryInterface;

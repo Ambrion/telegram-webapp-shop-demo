@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Category\Infrastructure\Api\Admin;
 
+use App\Category\Domain\Filter\CategoryFilterInterface;
 use App\Category\Infrastructure\Filter\CategoryFilter;
 use App\Category\Infrastructure\Form\CategoryFilterForm;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -16,7 +17,7 @@ readonly class CategoryFilterApi implements CategoryFilterApiInterface
     ) {
     }
 
-    public function createFilterForm(CategoryFilter $filter): FormInterface
+    public function createFilterForm(CategoryFilterInterface $filter): FormInterface
     {
         return $this->formFactory->create(CategoryFilterForm::class, $filter);
     }

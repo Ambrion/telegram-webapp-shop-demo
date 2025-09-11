@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Admin\Infrastructure\Adapter\Category;
 
-use App\Category\Application\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryDTO;
 use Symfony\Component\Form\FormInterface;
 
 interface CategoryFormAdapterInterface

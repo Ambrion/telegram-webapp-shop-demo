@@ -2,36 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\DTO;
+namespace App\Category\Domain\DTO;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
-class CategoryListDTO
+readonly class CategoryListDTO
 {
     public function __construct(
-        #[Assert\NotBlank]
-        #[Assert\Type('int')]
         public int $id,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $title,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $slug,
 
-        #[Assert\Type('string')]
         public ?string $parentTitle,
 
-        #[Assert\Type('bool')]
         public ?bool $isActive,
 
-        #[Assert\NotBlank]
-        #[Assert\Type('string')]
         public string $categoryStatus,
 
-        #[Assert\Type('int')]
         public ?int $sortOrder = 0,
     ) {
     }

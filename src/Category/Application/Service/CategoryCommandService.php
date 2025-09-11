@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Infrastructure\Service;
+namespace App\Category\Application\Service;
 
-use App\Category\Application\Command\CreateCategory\CreateCategoryCommand;
-use App\Category\Application\Command\UpdateCategory\UpdateCategoryCommand;
-use App\Category\Application\DTO\CategoryDTO;
-use App\Category\Application\Service\CategoryCommandServiceInterface;
+use App\Category\Application\UseCases\Command\CreateCategory\CreateCategoryCommand;
+use App\Category\Application\UseCases\Command\UpdateCategory\UpdateCategoryCommand;
+use App\Category\Domain\DTO\CategoryDTO;
+use App\Category\Domain\Service\CategoryCommandServiceInterface;
 use App\Shared\Application\Command\CommandBusInterface;
 
 readonly class CategoryCommandService implements CategoryCommandServiceInterface

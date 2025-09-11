@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Product\Infrastructure\Api;
 
-use App\Category\Application\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryDTO;
 use App\Product\Domain\DTO\ProductDTO;
 use App\Product\Infrastructure\Form\ProductForm;
 use Symfony\Component\Form\FormFactoryInterface;

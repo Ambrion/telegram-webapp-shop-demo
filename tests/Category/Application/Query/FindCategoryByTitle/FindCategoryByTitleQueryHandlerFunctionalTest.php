@@ -2,9 +2,9 @@
 
 namespace App\Tests\Category\Application\Query\FindCategoryByTitle;
 
-use App\Category\Application\DTO\CategoryDTO;
-use App\Category\Application\Query\FindCategoryByTitle\FindCategoryByTitleQuery;
-use App\Category\Application\Query\FindCategoryByTitle\FindCategoryByTitleQueryHandler;
+use App\Category\Application\UseCases\Query\FindCategoryByTitle\FindCategoryByTitleQuery;
+use App\Category\Application\UseCases\Query\FindCategoryByTitle\FindCategoryByTitleQueryHandler;
+use App\Category\Domain\DTO\CategoryDTO;
 use App\Category\Domain\Entity\Category;
 use App\Category\Domain\Repository\CategoryQueryRepositoryInterface;
 use App\Tests\Resource\Fixture\Category\CategoryIsActiveFixture;

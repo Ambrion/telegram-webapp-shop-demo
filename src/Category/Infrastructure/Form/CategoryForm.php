@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Category\Infrastructure\Form;
 
-use App\Category\Application\DTO\CategoryDTO;
+use App\Category\Domain\DTO\CategoryDTO;
 use App\Category\Domain\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

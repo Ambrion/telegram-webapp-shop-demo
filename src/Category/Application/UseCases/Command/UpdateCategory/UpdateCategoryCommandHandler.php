@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Command\UpdateCategory;
+namespace App\Category\Application\UseCases\Command\UpdateCategory;
 
 use App\Category\Domain\Factory\CategoryFactory;
 use App\Category\Domain\Repository\CategoryCommandRepositoryInterface;

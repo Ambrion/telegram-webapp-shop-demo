@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Category\Application\Command\CreateCategory;
 
-use App\Category\Application\Command\CreateCategory\CreateCategoryCommand;
-use App\Category\Application\Command\CreateCategory\CreateCategoryCommandHandler;
+use App\Category\Application\UseCases\Command\CreateCategory\CreateCategoryCommand;
+use App\Category\Application\UseCases\Command\CreateCategory\CreateCategoryCommandHandler;
 use App\Category\Domain\Entity\Category;
 use App\Category\Domain\Factory\CategoryFactory;
 use App\Category\Domain\Repository\CategoryCommandRepositoryInterface;

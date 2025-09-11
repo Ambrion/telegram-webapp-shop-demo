@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Category\Application\Command\CreateCategory;
+namespace App\Category\Application\UseCases\Command\UpdateCategory;
 
 use App\Shared\Application\Command\CommandInterface;
 
-readonly class CreateCategoryCommand implements CommandInterface
+class UpdateCategoryCommand implements CommandInterface
 {
     public function __construct(
+        public int $id,
         public string $title,
         public ?int $parentId,
         public bool $isActive,
-        public ?int $sortOrder = 0,
+        public ?int $sortOrder,
     ) {
     }
 }

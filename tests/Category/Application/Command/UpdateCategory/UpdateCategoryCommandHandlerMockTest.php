@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Category\Application\Command\UpdateCategory;
 
-use App\Category\Application\Command\UpdateCategory\UpdateCategoryCommand;
-use App\Category\Application\Command\UpdateCategory\UpdateCategoryCommandHandler;
+use App\Category\Application\UseCases\Command\UpdateCategory\UpdateCategoryCommand;
+use App\Category\Application\UseCases\Command\UpdateCategory\UpdateCategoryCommandHandler;
 use App\Category\Domain\Entity\Category;
 use App\Category\Domain\Factory\CategoryFactory;
 use App\Category\Domain\Repository\CategoryCommandRepositoryInterface;
