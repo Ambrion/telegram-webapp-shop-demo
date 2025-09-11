@@ -42,6 +42,8 @@ class ProductImageReorderController extends AbstractController
 
         $imageIds = $data['sortOrder'] ?? [];
 
+        $imageIds = array_map('intval', $imageIds);
+
         if (!empty($imageIds)) {
             $result = $this->productAdapter->reorderProductImage($productId, $imageIds);
 

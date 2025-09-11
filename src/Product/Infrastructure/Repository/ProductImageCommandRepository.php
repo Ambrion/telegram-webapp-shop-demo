@@ -55,7 +55,7 @@ class ProductImageCommandRepository extends ServiceEntityRepository implements P
             $stmt = $connection->prepare($sql);
 
             foreach ($values as $key => $value) {
-                $stmt->bindValue($key, $value, \PDO::PARAM_STR);
+                $stmt->bindValue($key, (string) $value, \PDO::PARAM_STR);
             }
 
             $insertedRows = $stmt->executeStatement();

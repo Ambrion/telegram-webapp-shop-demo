@@ -44,6 +44,8 @@ class ProductImageDeleteController extends AbstractController
 
         $ids = $data['ids'] ?? [];
 
+        $ids = array_map('intval', $ids);
+
         if (!empty($ids)) {
             $storagePath = $this->getParameter('storage_path');
 

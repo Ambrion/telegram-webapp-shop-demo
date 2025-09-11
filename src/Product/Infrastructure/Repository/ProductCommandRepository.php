@@ -71,7 +71,7 @@ class ProductCommandRepository extends ServiceEntityRepository implements Produc
             $stmt = $connection->prepare($sql);
 
             foreach ($values as $key => $value) {
-                $stmt->bindValue($key, $value, \PDO::PARAM_INT);
+                $stmt->bindValue($key, (int) $value, \PDO::PARAM_INT);
             }
 
             $stmt->executeStatement();
@@ -139,7 +139,7 @@ class ProductCommandRepository extends ServiceEntityRepository implements Produc
             $stmt = $connection->prepare($sqlAdd);
 
             foreach ($values as $key => $value) {
-                $stmt->bindValue($key, $value, \PDO::PARAM_INT);
+                $stmt->bindValue($key, (int) $value, \PDO::PARAM_INT);
             }
 
             $stmt->executeStatement();

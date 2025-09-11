@@ -70,7 +70,7 @@ class ProductImageQueryRepository extends ServiceEntityRepository implements Pro
             ->prepare($sql);
 
         foreach ($ids as $key => $imageId) {
-            $stmt->bindValue(':image_id_'.$key, $imageId, \PDO::PARAM_INT);
+            $stmt->bindValue(':image_id_'.$key, (int) $imageId, \PDO::PARAM_INT);
         }
 
         return $stmt->executeQuery()->fetchFirstColumn();
