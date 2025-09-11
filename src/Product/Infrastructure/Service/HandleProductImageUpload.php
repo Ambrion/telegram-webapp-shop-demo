@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Product\Infrastructure\Service;
 
-use App\Product\Application\Service\ProductCommandServiceInterface;
+use App\Product\Domain\Service\ProductCommandServiceInterface;
 use App\Product\Domain\Service\FileUploaderInterface;
 use App\Product\Domain\Service\HandleProductImageUploadInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

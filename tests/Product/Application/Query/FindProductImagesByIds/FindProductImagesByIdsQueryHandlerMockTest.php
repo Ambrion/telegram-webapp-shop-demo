@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Product\Application\Query\FindProductImagesByIds;
 
-use App\Product\Application\Query\FindProductImagesByIds\FindProductImagesByIdsQuery;
-use App\Product\Application\Query\FindProductImagesByIds\FindProductImagesByIdsQueryHandler;
+use App\Product\Application\UseCases\Query\FindProductImagesByIds\FindProductImagesByIdsQuery;
+use App\Product\Application\UseCases\Query\FindProductImagesByIds\FindProductImagesByIdsQueryHandler;
 use App\Product\Domain\Repository\ProductImageQueryRepositoryInterface;
 use App\Shared\Domain\Validation\QueryValidationIdsInterface;
 use PHPUnit\Framework\MockObject\MockObject;

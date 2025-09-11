@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Product\Application\Query\FindProductById;
 
-use App\Product\Application\Query\FindProductById\FindProductByIdQuery;
-use App\Product\Application\Query\FindProductById\FindProductByIdQueryHandler;
+use App\Product\Application\UseCases\Query\FindProductById\FindProductByIdQuery;
+use App\Product\Application\UseCases\Query\FindProductById\FindProductByIdQueryHandler;
 use App\Product\Domain\DTO\ProductDTO;
 use App\Product\Domain\Entity\Product;
 use App\Product\Domain\Repository\ProductCategoryQueryRepositoryInterface;

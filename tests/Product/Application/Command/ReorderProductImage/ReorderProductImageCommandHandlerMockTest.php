@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Product\Application\Command\ReorderProductImage;
 
-use App\Product\Application\Command\ReorderProductImage\ReorderProductImageCommand;
-use App\Product\Application\Command\ReorderProductImage\ReorderProductImageCommandHandler;
+use App\Product\Application\UseCases\Command\ReorderProductImage\ReorderProductImageCommand;
+use App\Product\Application\UseCases\Command\ReorderProductImage\ReorderProductImageCommandHandler;
 use App\Product\Domain\Repository\ProductImageCommandRepositoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

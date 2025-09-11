@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Product\Application\Command\UpdateProduct;
 
-use App\Product\Application\Command\UpdateProduct\UpdateProductCommand;
-use App\Product\Application\Command\UpdateProduct\UpdateProductCommandHandler;
+use App\Product\Application\UseCases\Command\UpdateProduct\UpdateProductCommand;
+use App\Product\Application\UseCases\Command\UpdateProduct\UpdateProductCommandHandler;
 use App\Product\Domain\Entity\Product;
 use App\Product\Domain\Factory\ProductFactory;
 use App\Product\Domain\Repository\ProductCommandRepositoryInterface;

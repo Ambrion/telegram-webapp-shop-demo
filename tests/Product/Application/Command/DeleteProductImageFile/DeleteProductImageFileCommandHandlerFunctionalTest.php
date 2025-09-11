@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Product\Application\Command\DeleteProductImageFile;
 
-use App\Product\Application\Command\DeleteProductImageFile\DeleteProductImageFileCommand;
-use App\Product\Application\Command\DeleteProductImageFile\DeleteProductImageFileCommandHandler;
+use App\Product\Application\UseCases\Command\DeleteProductImageFile\DeleteProductImageFileCommand;
+use App\Product\Application\UseCases\Command\DeleteProductImageFile\DeleteProductImageFileCommandHandler;
 use PHPUnit\Framework\TestCase;
 
 class DeleteProductImageFileCommandHandlerFunctionalTest extends TestCase

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Resource\Fixture\Product;
 
-use App\Product\Application\Command\CreateProductImage\CreateProductImageCommand;
-use App\Product\Application\Command\CreateProductImage\CreateProductImageCommandHandler;
+use App\Product\Application\UseCases\Command\CreateProductImage\CreateProductImageCommand;
+use App\Product\Application\UseCases\Command\CreateProductImage\CreateProductImageCommandHandler;
 use App\Product\Domain\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;

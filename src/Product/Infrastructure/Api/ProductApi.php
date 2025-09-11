@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Product\Infrastructure\Api;
 
-use App\Product\Application\Service\ProductCommandServiceInterface;
-use App\Product\Application\Service\ProductQueryServiceInterface;
+use App\Product\Domain\Service\ProductCommandServiceInterface;
+use App\Product\Domain\Service\ProductQueryServiceInterface;
 use App\Product\Domain\DTO\ProductCategoryDTO;
 use App\Product\Domain\DTO\ProductDTO;
 use App\Product\Domain\DTO\ProductForOrderDTO;
