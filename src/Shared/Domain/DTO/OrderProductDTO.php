@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\DTO;
 
-
 class OrderProductDTO
 {
     public function __construct(

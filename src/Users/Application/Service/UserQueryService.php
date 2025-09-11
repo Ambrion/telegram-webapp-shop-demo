@@ -7,8 +7,8 @@ namespace App\Users\Application\Service;
 use App\Shared\Application\Query\QueryBusInterface;
 use App\Users\Application\UseCases\Query\FindUserByTelegramId\FindUserByTelegramIdQuery;
 use App\Users\Application\UseCases\Query\FindUserByUlId\FindUserByUlIdQuery;
-use App\Users\Domain\Service\UserQueryServiceInterface;
 use App\Users\Domain\DTO\UserDTO;
+use App\Users\Domain\Service\UserQueryServiceInterface;
 
 readonly class UserQueryService implements UserQueryServiceInterface
 {

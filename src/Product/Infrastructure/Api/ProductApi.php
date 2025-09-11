@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Product\Infrastructure\Api;
 
-use App\Product\Domain\Service\ProductCommandServiceInterface;
-use App\Product\Domain\Service\ProductQueryServiceInterface;
 use App\Product\Domain\DTO\ProductCategoryDTO;
 use App\Product\Domain\DTO\ProductDTO;
 use App\Product\Domain\DTO\ProductForOrderDTO;
 use App\Product\Domain\DTO\ProductListDTO;
 use App\Product\Domain\Filter\ProductFilterInterface;
+use App\Product\Domain\Service\ProductCommandServiceInterface;
+use App\Product\Domain\Service\ProductQueryServiceInterface;
 use App\Shared\Domain\DTO\OrderProductDTO;
 
 readonly class ProductApi implements ProductApiInterface

@@ -10,8 +10,8 @@ use App\Product\Application\UseCases\Command\DeleteProductImage\DeleteProductIma
 use App\Product\Application\UseCases\Command\DeleteProductImageFile\DeleteProductImageFileCommand;
 use App\Product\Application\UseCases\Command\ReorderProductImage\ReorderProductImageCommand;
 use App\Product\Application\UseCases\Command\UpdateProduct\UpdateProductCommand;
-use App\Product\Domain\Service\ProductCommandServiceInterface;
 use App\Product\Domain\DTO\ProductDTO;
+use App\Product\Domain\Service\ProductCommandServiceInterface;
 use App\Shared\Application\Command\CommandBusInterface;
 
 readonly class ProductCommandService implements ProductCommandServiceInterface

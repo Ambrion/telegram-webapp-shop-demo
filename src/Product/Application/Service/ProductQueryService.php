@@ -11,12 +11,12 @@ use App\Product\Application\UseCases\Query\FindProductById\FindProductByIdQuery;
 use App\Product\Application\UseCases\Query\FindProductByTitle\FindProductByTitleQuery;
 use App\Product\Application\UseCases\Query\FindProductImagesByIds\FindProductImagesByIdsQuery;
 use App\Product\Application\UseCases\Query\ListProductWithPagination\ListProductWithPaginationQuery;
-use App\Product\Domain\Service\ProductQueryServiceInterface;
 use App\Product\Domain\DTO\ProductCategoryDTO;
 use App\Product\Domain\DTO\ProductDTO;
 use App\Product\Domain\DTO\ProductForOrderDTO;
 use App\Product\Domain\DTO\ProductListDTO;
 use App\Product\Domain\Filter\ProductFilterInterface;
+use App\Product\Domain\Service\ProductQueryServiceInterface;
 use App\Shared\Application\Query\QueryBusInterface;
 use App\Shared\Domain\DTO\OrderProductDTO;
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Product\Infrastructure\Service;
 
-use App\Product\Domain\Service\ProductCommandServiceInterface;
 use App\Product\Domain\Service\FileUploaderInterface;
 use App\Product\Domain\Service\HandleProductImageUploadInterface;
+use App\Product\Domain\Service\ProductCommandServiceInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\FlashBagAwareSessionInterface;

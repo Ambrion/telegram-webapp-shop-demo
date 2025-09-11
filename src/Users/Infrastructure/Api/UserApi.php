@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Users\Infrastructure\Api;
 
+use App\Users\Domain\DTO\UserDTO;
 use App\Users\Domain\Service\UserCommandServiceInterface;
 use App\Users\Domain\Service\UserQueryServiceInterface;
-use App\Users\Domain\DTO\UserDTO;
 
 readonly class UserApi implements UserApiInterface
 {
