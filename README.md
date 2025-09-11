@@ -62,6 +62,7 @@ https://demo-bot.thearttoprovide.name/login
 - Schemas doctrine-mapping с .orm.xml данными для БД схем
 - .yaml конфиги и переводы
 - PHPUnit для мок и функциональных тестов
+- Фикстуры для тестов
 - phpstan статического анализа
 - deptrac для отслеживания зависимостей слоёв и модулей
 - php-cs-fixer для однородного стиля кода
