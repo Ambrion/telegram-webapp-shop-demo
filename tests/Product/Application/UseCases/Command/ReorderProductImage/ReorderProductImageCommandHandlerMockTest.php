@@ -7,6 +7,7 @@ namespace App\Tests\Product\Application\UseCases\Command\ReorderProductImage;
 use App\Product\Application\UseCases\Command\ReorderProductImage\ReorderProductImageCommand;
 use App\Product\Application\UseCases\Command\ReorderProductImage\ReorderProductImageCommandHandler;
 use App\Product\Domain\Repository\ProductImageCommandRepositoryInterface;
+use App\Shared\Domain\Validation\QueryValidationIdsInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +20,8 @@ class ReorderProductImageCommandHandlerMockTest extends TestCase
     protected function setUp(): void
     {
         $this->repositoryMock = $this->createMock(ProductImageCommandRepositoryInterface::class);
-        $this->handler = new ReorderProductImageCommandHandler($this->repositoryMock);
+        $queryValidationIds = $this->createMock(QueryValidationIdsInterface::class);
+        $this->handler = new ReorderProductImageCommandHandler($this->repositoryMock, $queryValidationIds);
     }
 
     public function test_reorder_product_images(): void

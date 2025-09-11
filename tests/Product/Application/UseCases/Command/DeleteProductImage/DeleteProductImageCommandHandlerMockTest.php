@@ -7,6 +7,7 @@ namespace App\Tests\Product\Application\UseCases\Command\DeleteProductImage;
 use App\Product\Application\UseCases\Command\DeleteProductImage\DeleteProductImageCommand;
 use App\Product\Application\UseCases\Command\DeleteProductImage\DeleteProductImageCommandHandler;
 use App\Product\Domain\Repository\ProductImageCommandRepositoryInterface;
+use App\Shared\Domain\Validation\QueryValidationIdsInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +20,8 @@ class DeleteProductImageCommandHandlerMockTest extends TestCase
     protected function setUp(): void
     {
         $this->repositoryMock = $this->createMock(ProductImageCommandRepositoryInterface::class);
-        $this->handler = new DeleteProductImageCommandHandler($this->repositoryMock);
+        $queryValidationIds = $this->createMock(QueryValidationIdsInterface::class);
+        $this->handler = new DeleteProductImageCommandHandler($this->repositoryMock, $queryValidationIds);
     }
 
     public function test_invoke_should_delete_product_images(): void
